@@ -1,0 +1,8 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import projects from '../../data/projects.json';
+export function getStaticPaths(){return projects.map(project=>({params:{slug:project.slug},props:{project}}));}
+const {project}=Astro.props;
+const next=projects[(projects.findIndex(p=>p.slug===project.slug)+1)%projects.length];
+---
+<Layout title={project.title+' — Eric Chen'} description={project.desc}><div class="detail"><a class="back-link" href="/#work">← 返回全部作品</a><p class="eyebrow">{project.category==='game'?'GAME DEVELOPMENT':'TOOLS & PIPELINE'}</p><h1>{project.title}</h1><p class="detail-desc">{project.desc}</p><div class="stack">{project.tags.map(tag=><span>{tag}</span>)}</div><img class="detail-cover" src={project.cover} alt={project.title}/><article class="prose" set:html={project.content}/><div class="next-project"><p class="eyebrow">NEXT PROJECT</p><a href={'/projects/'+next.slug+'/'}>{next.title} ↗</a></div></div></Layout>
