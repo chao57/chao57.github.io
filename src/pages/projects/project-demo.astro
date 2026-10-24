@@ -15,7 +15,7 @@ const videos = [
     {videos.map(video => (
       <section class="video-section" aria-label={video.title}>
         <h2>{video.title}</h2>
-        <video controls playsinline preload="metadata" aria-label={'通用放置类道具skill · ' + video.title}>
+        <video controls playsinline preload="metadata" poster={video.title === '演示 01' ? '/assets/placement-skill-cover.png' : undefined} aria-label={'通用放置类道具skill · ' + video.title}>
           <source src={video.src} type="video/mp4" />
           你的浏览器不支持视频播放。<a href={video.src}>打开视频文件</a>
         </video>
