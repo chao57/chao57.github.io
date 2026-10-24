@@ -6,16 +6,16 @@ const videos = [
   { title: '演示 03', src: '/videos/placement-skill-20261024-185205.mp4' },
 ];
 ---
-<Layout title="通用放置类道具skill — Eric Chen" description="通用放置类道具skill的三段项目演示视频。">
+<Layout title="在研FPS手游 — Eric Chen" description="在研FPS手游的三段项目演示视频。">
   <section class="detail demo-page">
     <a class="back-link" href="/#work">← 返回全部作品</a>
     <p class="eyebrow">PROJECT / VIDEO DEMO</p>
-    <h1>通用放置类道具skill<span class="accent">.</span></h1>
+    <h1>在研FPS手游<span class="accent">.</span></h1>
     <p class="detail-desc">项目视频演示 · 3 段视频</p>
     {videos.map(video => (
       <section class="video-section" aria-label={video.title}>
         <h2>{video.title}</h2>
-        <video controls playsinline preload="metadata" poster={video.title === '演示 01' ? '/assets/placement-skill-cover.png' : undefined} aria-label={'通用放置类道具skill · ' + video.title}>
+        <video controls playsinline preload="metadata" poster={video.title === '演示 01' ? '/assets/fps-mobile-cover.png' : undefined} aria-label={'在研FPS手游 · ' + video.title}>
           <source src={video.src} type="video/mp4" />
           你的浏览器不支持视频播放。<a href={video.src}>打开视频文件</a>
         </video>
@@ -31,3 +31,4 @@ const videos = [
   .demo-page video { display:block; width:100%; max-height:75vh; background:#080a08; border:1px solid var(--line); border-radius:8px; margin-top:16px; }
   .video-note {color:var(--muted);font-size:12px;line-height:1.8;margin-top:16px;}
 </style>
+
