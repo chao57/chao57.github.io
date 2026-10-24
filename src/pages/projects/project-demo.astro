@@ -1,20 +1,33 @@
 ---
 import Layout from '../../layouts/Layout.astro';
+const videos = [
+  { title: '演示 01', src: '/videos/project-demo-20260903.mp4' },
+  { title: '演示 02', src: '/videos/placement-skill-20261024-190422.mp4' },
+  { title: '演示 03', src: '/videos/placement-skill-20261024-185205.mp4' },
+];
 ---
-<Layout title="项目演示 — Eric Chen" description="Eric Chen 的新项目视频演示。">
+<Layout title="通用放置类道具skill — Eric Chen" description="通用放置类道具skill的三段项目演示视频。">
   <section class="detail demo-page">
     <a class="back-link" href="/#work">← 返回全部作品</a>
     <p class="eyebrow">PROJECT / VIDEO DEMO</p>
-    <h1>项目演示<span class="accent">.</span></h1>
-    <p class="detail-desc">新项目 · 视频演示</p>
-    <video controls playsinline preload="metadata" aria-label="新项目演示视频">
-      <source src="/videos/project-demo-20260903.mp4" type="video/mp4" />
-      你的浏览器不支持视频播放。<a href="/videos/project-demo-20260903.mp4">打开视频文件</a>
-    </video>
+    <h1>通用放置类道具skill<span class="accent">.</span></h1>
+    <p class="detail-desc">项目视频演示 · 3 段视频</p>
+    {videos.map(video => (
+      <section class="video-section" aria-label={video.title}>
+        <h2>{video.title}</h2>
+        <video controls playsinline preload="metadata" aria-label={'通用放置类道具skill · ' + video.title}>
+          <source src={video.src} type="video/mp4" />
+          你的浏览器不支持视频播放。<a href={video.src}>打开视频文件</a>
+        </video>
+      </section>
+    ))}
     <p class="video-note">点击播放，可拖动进度或全屏观看。</p>
   </section>
 </Layout>
 <style>
-  .demo-page video { display:block; width:100%; max-height:75vh; background:#080a08; border:1px solid var(--line); border-radius:8px; margin-top:32px; }
+  .demo-page h1 { overflow-wrap:anywhere; }
+  .video-section { margin-top:40px; }
+  .video-section h2 { font-size:18px; letter-spacing:0; }
+  .demo-page video { display:block; width:100%; max-height:75vh; background:#080a08; border:1px solid var(--line); border-radius:8px; margin-top:16px; }
   .video-note {color:var(--muted);font-size:12px;line-height:1.8;margin-top:16px;}
 </style>
