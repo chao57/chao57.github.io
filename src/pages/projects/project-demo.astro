@@ -4,14 +4,15 @@ const videos = [
   { title: '演示 01', src: '/videos/project-demo-20260903.mp4' },
   { title: '演示 02', src: '/videos/placement-skill-20261024-190422.mp4' },
   { title: '演示 03', src: '/videos/placement-skill-20261024-185205.mp4' },
+  { title: '演示 04', src: '/videos/fps-demo-20261024-192518.mp4' },
 ];
 ---
-<Layout title="在研FPS手游 — Eric Chen" description="在研FPS手游的三段项目演示视频。">
+<Layout title="在研FPS手游 — Eric Chen" description="在研FPS手游的四段项目演示视频与项目截图。">
   <section class="detail demo-page">
     <a class="back-link" href="/#work">← 返回全部作品</a>
     <p class="eyebrow">PROJECT / VIDEO DEMO</p>
     <h1>在研FPS手游<span class="accent">.</span></h1>
-    <p class="detail-desc">项目视频演示 · 3 段视频</p>
+    <p class="detail-desc">项目视频演示 · {videos.length} 段视频 · 项目截图</p>
     {videos.map(video => (
       <section class="video-section" aria-label={video.title}>
         <h2>{video.title}</h2>
@@ -22,6 +23,13 @@ const videos = [
       </section>
     ))}
     <p class="video-note">点击播放，可拖动进度或全屏观看。</p>
+    <section class="video-section" aria-label="项目截图">
+      <h2>项目截图</h2>
+      <a href="/assets/fps-project-diagram.png" target="_blank" rel="noopener noreferrer" aria-label="查看项目截图原图">
+        <img class="project-screenshot" src="/assets/fps-project-diagram.png" alt="在研FPS手游场景截图，含力与角度分解标注" loading="lazy" width="2209" height="1352" />
+      </a>
+      <p class="video-note">点击图片查看原图。</p>
+    </section>
   </section>
 </Layout>
 <style>
@@ -30,5 +38,6 @@ const videos = [
   .video-section h2 { font-size:18px; letter-spacing:0; }
   .demo-page video { display:block; width:100%; max-height:75vh; background:#080a08; border:1px solid var(--line); border-radius:8px; margin-top:16px; }
   .video-note {color:var(--muted);font-size:12px;line-height:1.8;margin-top:16px;}
+  .project-screenshot {display:block;width:100%;height:auto;margin-top:16px;border-radius:8px;border:1px solid var(--line);}
 </style>
 
