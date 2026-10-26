@@ -7,24 +7,45 @@ const videos = [
   { title: '演示 04', src: '/videos/fps-demo-20261024-192518.mp4' },
   { title: '演示 05', src: '/videos/fps-demo-20260320-102947.mp4' },
 ];
+const toolVideos = [
+  { title: '工具演示 01', src: '/videos/fps-tool-20260817-142427.mp4' },
+  { title: '工具演示 02', src: '/videos/fps-tool-20261016-153920.mp4' },
+];
 ---
-<Layout title="在研FPS手游 — Eric Chen" description="在研FPS手游的五段项目演示视频与项目截图。">
+<Layout title="在研FPS手游 — Eric Chen" description="在研FPS手游的项目演示、工具开发与项目截图。">
   <section class="detail demo-page">
     <a class="back-link" href="/#work">← 返回全部作品</a>
     <p class="eyebrow">PROJECT / VIDEO DEMO</p>
     <h1>在研FPS手游<span class="accent">.</span></h1>
-    <p class="detail-desc">项目视频演示 · {videos.length} 段视频 · 项目截图</p>
+    <p class="detail-desc">项目演示 {videos.length} 段 · 工具开发 {toolVideos.length} 段 · 项目截图</p>
+    <nav class="section-links" aria-label="项目内容导航"><a href="#game-demos">项目演示</a><a href="#tool-development">工具开发</a><a href="#screenshots">项目截图</a></nav>
+    <section id="game-demos" class="media-group" aria-labelledby="game-heading">
+    <h2 id="game-heading" class="group-heading">项目演示</h2>
     {videos.map(video => (
       <section class="video-section" aria-label={video.title}>
-        <h2>{video.title}</h2>
+        <h3>{video.title}</h3>
         <video controls playsinline preload="metadata" poster={video.title === '演示 01' ? '/assets/fps-mobile-cover.png' : undefined} aria-label={'在研FPS手游 · ' + video.title}>
           <source src={video.src} type="video/mp4" />
           你的浏览器不支持视频播放。<a href={video.src}>打开视频文件</a>
         </video>
       </section>
     ))}
+    </section>
+    <section id="tool-development" class="media-group" aria-labelledby="tools-heading">
+      <p class="eyebrow">TOOLS / DEVELOPMENT</p>
+      <h2 id="tools-heading" class="group-heading">工具开发</h2>
+      {toolVideos.map(video => (
+        <section class="video-section" aria-label={video.title}>
+          <h3>{video.title}</h3>
+          <video controls playsinline preload="metadata" aria-label={'在研FPS手游 · ' + video.title}>
+            <source src={video.src} type="video/mp4" />
+            你的浏览器不支持视频播放。<a href={video.src}>打开视频文件</a>
+          </video>
+        </section>
+      ))}
+    </section>
     <p class="video-note">点击播放，可拖动进度或全屏观看。</p>
-    <section class="video-section" aria-label="项目截图">
+    <section id="screenshots" class="media-group" aria-label="项目截图">
       <h2>项目截图</h2>
       <a href="/assets/fps-project-diagram.png" target="_blank" rel="noopener noreferrer" aria-label="查看项目截图原图">
         <img class="project-screenshot" src="/assets/fps-project-diagram.png" alt="在研FPS手游场景截图，含力与角度分解标注" loading="lazy" width="2209" height="1352" />
@@ -36,7 +57,10 @@ const videos = [
 <style>
   .demo-page h1 { overflow-wrap:anywhere; }
   .video-section { margin-top:40px; }
-  .video-section h2 { font-size:18px; letter-spacing:0; }
+  .video-section h3 { font-size:18px; letter-spacing:0; font-weight:500; margin:0; }
+  .media-group {margin-top:48px;padding-top:32px;border-top:1px solid var(--line);}
+  .group-heading {font-size:28px;}
+  .section-links {display:flex;gap:20px;flex-wrap:wrap;margin-top:24px;color:var(--accent);}
   .demo-page video { display:block; width:100%; max-height:75vh; background:#080a08; border:1px solid var(--line); border-radius:8px; margin-top:16px; }
   .video-note {color:var(--muted);font-size:12px;line-height:1.8;margin-top:16px;}
   .project-screenshot {display:block;width:100%;height:auto;margin-top:16px;border-radius:8px;border:1px solid var(--line);}
