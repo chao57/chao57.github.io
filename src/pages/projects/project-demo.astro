@@ -1,15 +1,14 @@
 ---
 import Layout from '../../layouts/Layout.astro';
-const videos = [
-  { title: '演示 01', src: '/videos/project-demo-20260903.mp4' },
-  { title: '演示 02', src: '/videos/placement-skill-20261024-190422.mp4' },
-  { title: '演示 03', src: '/videos/placement-skill-20261024-185205.mp4' },
-  { title: '演示 04', src: '/videos/fps-demo-20261024-192518.mp4' },
-  { title: '演示 05', src: '/videos/fps-demo-20260320-102947.mp4' },
+const groups = [
+  { title: '阔剑地雷激光穿过子弹孔实现', sources: ['/videos/project-demo-20260903.mp4'], poster: '/assets/fps-mobile-cover.png' },
+  { title: '通用放置类道具skill实现效果', sources: ['/videos/placement-skill-20261024-190422.mp4', '/videos/placement-skill-20261024-185205.mp4'] },
+  { title: '挂绳物理模拟', sources: ['/videos/fps-demo-20261024-192518.mp4'], image: '/assets/fps-project-diagram.png' },
+  { title: '抛物线溅血实现', sources: ['/videos/fps-demo-20260320-102947.mp4'] },
 ];
 const toolVideos = [
-  { title: '工具演示 01', src: '/videos/fps-tool-20260817-142427.mp4' },
-  { title: '工具演示 02', src: '/videos/fps-tool-20261016-153920.mp4' },
+  { title: '3p动画调试工具', src: '/videos/fps-tool-20260817-142427.mp4' },
+  { title: '多手指触屏模拟工具', src: '/videos/fps-tool-20261016-153920.mp4' },
 ];
 ---
 <Layout title="在研FPS手游 — Eric Chen" description="在研FPS手游的项目演示、工具开发与项目截图。">
@@ -17,17 +16,25 @@ const toolVideos = [
     <a class="back-link" href="/#work">← 返回全部作品</a>
     <p class="eyebrow">PROJECT / VIDEO DEMO</p>
     <h1>在研FPS手游<span class="accent">.</span></h1>
-    <p class="detail-desc">项目演示 {videos.length} 段 · 工具开发 {toolVideos.length} 段 · 项目截图</p>
-    <nav class="section-links" aria-label="项目内容导航"><a href="#game-demos">项目演示</a><a href="#tool-development">工具开发</a><a href="#screenshots">项目截图</a></nav>
+    <p class="detail-desc">项目演示 {groups.reduce((count, group) => count + group.sources.length, 0)} 段 · 工具开发 {toolVideos.length} 段</p>
+    <nav class="section-links" aria-label="项目内容导航"><a href="#game-demos">项目演示</a><a href="#screenshots">挂绳物理模拟</a><a href="#tool-development">工具开发</a></nav>
     <section id="game-demos" class="media-group" aria-labelledby="game-heading">
     <h2 id="game-heading" class="group-heading">项目演示</h2>
-    {videos.map(video => (
-      <section class="video-section" aria-label={video.title}>
-        <h3>{video.title}</h3>
-        <video controls playsinline preload="metadata" poster={video.title === '演示 01' ? '/assets/fps-mobile-cover.png' : undefined} aria-label={'在研FPS手游 · ' + video.title}>
-          <source src={video.src} type="video/mp4" />
-          你的浏览器不支持视频播放。<a href={video.src}>打开视频文件</a>
-        </video>
+    {groups.map(group => (
+      <section id={group.image ? 'screenshots' : undefined} class="video-section" aria-label={group.title}>
+        <h3>{group.title}</h3>
+        {group.sources.map((src, index) => (
+          <video controls playsinline preload="metadata" poster={group.poster} aria-label={'在研FPS手游 · ' + group.title + (group.sources.length > 1 ? ' · 视频 ' + (index + 1) : '')}>
+            <source src={src} type="video/mp4" />
+            你的浏览器不支持视频播放。<a href={src}>打开视频文件</a>
+          </video>
+        ))}
+        {group.image && <>
+          <a href={group.image} target="_blank" rel="noopener noreferrer" aria-label="查看挂绳物理模拟示意图原图">
+            <img class="project-screenshot" src={group.image} alt="挂绳物理模拟的力与角度分解标注" loading="lazy" width="2209" height="1352" />
+          </a>
+          <p class="video-note">点击图片查看原图。</p>
+        </>}
       </section>
     ))}
     </section>
@@ -45,13 +52,6 @@ const toolVideos = [
       ))}
     </section>
     <p class="video-note">点击播放，可拖动进度或全屏观看。</p>
-    <section id="screenshots" class="media-group" aria-label="项目截图">
-      <h2>项目截图</h2>
-      <a href="/assets/fps-project-diagram.png" target="_blank" rel="noopener noreferrer" aria-label="查看项目截图原图">
-        <img class="project-screenshot" src="/assets/fps-project-diagram.png" alt="在研FPS手游场景截图，含力与角度分解标注" loading="lazy" width="2209" height="1352" />
-      </a>
-      <p class="video-note">点击图片查看原图。</p>
-    </section>
   </section>
 </Layout>
 <style>
